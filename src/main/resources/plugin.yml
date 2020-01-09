@@ -1,0 +1,14 @@
+name: DopePlugin
+main: lokinsky.dope.plugin.Dope
+version: 0.1
+commands:
+   dlogin:
+      description: This is a dope command.
+      usage: /dlogin
+      permission: dlogin.basic
+      permission-message: You don't have 
+   dregister:
+      description: This is a dope command.
+      usage: /dreg
+      permission: dreg.basic
+      permission-message: You don't have 
