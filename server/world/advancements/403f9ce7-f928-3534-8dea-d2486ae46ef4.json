@@ -17,15 +17,15 @@
     },
     "done": true
   },
-  "minecraft:adventure/root": {
-    "criteria": {
-      "killed_by_something": "2020-01-08 19:39:47 +0300"
-    },
-    "done": true
-  },
   "minecraft:recipes/transportation/birch_boat": {
     "criteria": {
       "in_water": "2020-01-08 19:37:19 +0300"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_by_something": "2020-01-08 19:39:47 +0300"
     },
     "done": true
   },
@@ -43,6 +43,8 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
+      "minecraft:forest": "2020-01-10 01:05:30 +0300",
+      "minecraft:river": "2020-01-10 01:05:35 +0300",
       "minecraft:plains": "2020-01-08 19:36:18 +0300"
     },
     "done": false

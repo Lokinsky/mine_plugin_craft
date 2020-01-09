@@ -1,5 +1,11 @@
 [
   {
+    "uuid": "403f9ce7-f928-3534-8dea-d2486ae46ef4",
+    "name": "GG",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
     "uuid": "920c79d8-a1ca-3c23-8b42-dadfe7a301f4",
     "name": "lol",
     "level": 4,

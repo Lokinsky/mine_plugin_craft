@@ -11,6 +11,7 @@ public class ClientData implements Observable {
 	private Clients clients;
 	public ClientData() {
 	        observers = new LinkedList<>();
+	        clients = new Clients();
 	    }
 	@Override
 	public void registerObserver(Observer o) {
@@ -33,6 +34,9 @@ public class ClientData implements Observable {
 	public void setClients(Clients clients) {
 	       this.clients = clients;
 	       notifyObservers();
-	   }
+	}
+	public Clients getClients() {
+		return clients;
+	}
 
 }

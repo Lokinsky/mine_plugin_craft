@@ -7,19 +7,23 @@ import org.bukkit.command.CommandSender;
 
 import lokinsky.dope.plugin.Dope;
 import lokinsky.dope.plugin.Command.Command;
+import lokinsky.dope.plugin.Observer.ClientData;
 
 public class Login implements Command{
-	private Dope dope;
-	public Login(Dope dope) {
-		this.dope = dope;
+	private ClientData clientData;
+	private PDO_MYSQL pdo_mysql;
+	public Login(ClientData clientData, PDO_MYSQL pdo_mysql) {
+		this.clientData = clientData;
+		this.pdo_mysql = pdo_mysql;
 	}
 	private boolean _login(String args[],CommandSender sender) throws SQLException {
-		
-		dope.get_pdo_mysql().sql.get("get_user").setString(1, sender.getName());
-		dope.get_pdo_mysql().sql.get("get_user").execute();
+		sender.sendMessage(pdo_mysql+" 1");
+		sender.sendMessage(clientData+"2");
+		pdo_mysql.sql.get("get_user").setString(1, sender.getName());
+		pdo_mysql.sql.get("get_user").execute();
 		String res = "";
-		if(dope.get_pdo_mysql().sql.get("get_user").getResultSet().next()) {
-			res = dope.get_pdo_mysql().sql.get("get_user").getResultSet().getString(4);
+		if(pdo_mysql.sql.get("get_user").getResultSet().next()) {
+			res = pdo_mysql.sql.get("get_user").getResultSet().getString(4);
 		}else {
 			return false;
 		}
@@ -28,12 +32,9 @@ public class Login implements Command{
 		//sender.sendMessage("Logged in with "+args[0]+" player: "+sender.getName());
 		if(res.equalsIgnoreCase(args[0])) {
 			sender.sendMessage("Logged in with "+res);
-			dope.getClients().get(dope
-					.getServer()
-					.getPlayer(sender.getName())
-									.getUniqueId())
-									.setAuth(true);
-			dope.get_client_data().setClients(dope.getClients());
+			clientData.getClients().get(sender.getName()).setAuth(true);
+			clientData.notifyObservers();
+			//dope.get_client_data().setClients(dope.getClients());
 			return true;
 		}
 		else {

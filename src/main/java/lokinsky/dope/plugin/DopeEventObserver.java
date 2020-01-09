@@ -1,38 +1,41 @@
 package lokinsky.dope.plugin;
 
 import lokinsky.dope.plugin.DataModels.Clients;
-import lokinsky.dope.plugin.Models.Client;
 import lokinsky.dope.plugin.Observer.Observer;
 
 public class DopeEventObserver implements Observer {
 
 		private DopeListener listener;
+		private Clients clients;
 		private Dope dope;
 		
-			
-		public Dope get_dope() {
-			return this.dope;
-		}
 		
 		
 		public DopeEventObserver(DopeListener listener,Dope dope) {
 			this.dope = dope;
 			this.listener = listener;
+			this.clients = new Clients();
+			dope.getServer().getPluginManager().registerEvents(listener, dope);
 			
 		}
 		
 		@Override
 		public void update(Clients clients) {
-			this.listener.setClients(clients);
+			this.clients = clients;
 		}
 		
-		public void setClients(Clients clients) {
-			this.get_dope().get_client_data().setClients(clients);
-			//this.get_dope().get_client_data().notifyObservers();
+
+		public void refreshClients() {
+			dope.get_client_data().setClients(clients);
 		}
-		
+		public Clients getClients() {
+			return this.clients;
+		}
 		public void registerListener() {
 			this.listener.set_event_observer(this);
+		}
+		public void Logger(String log) {
+			dope.getServer().getLogger().info(log);
 		}
 
 
